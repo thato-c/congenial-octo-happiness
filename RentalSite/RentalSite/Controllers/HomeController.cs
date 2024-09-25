@@ -8,6 +8,47 @@ namespace RentalSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        // Sample Data
+        private List<Property> _properties = new List<Property>
+        {
+            new Property {
+                PropertyId = 1,
+                Bedrooms = 1,
+                Bathrooms = 1,
+                ParkingSpaces = 1,
+                ERFSize = 1500,
+                About = "This is the first property",
+                Province = "Gauteng",
+                City = "Johannesburg",
+                Suburb = "Bassonia"
+            },
+
+            new Property {
+                PropertyId = 2,
+                Bedrooms = 2,
+                Bathrooms = 2,
+                ParkingSpaces = 2,
+                ERFSize = 1300,
+                About = "This is the second property",
+                Province = "Gauteng",
+                City = "Johannesburg",
+                Suburb = "Soweto"
+            },
+
+            new Property {
+                PropertyId = 3,
+                Bedrooms = 3,
+                Bathrooms = 3,
+                ParkingSpaces = 3,
+                ERFSize = 1200,
+                About = "This is the third property",
+                Province = "Gauteng",
+                City = "Johannesburg",
+                Suburb = "Heaven"
+            },
+
+        };
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -15,7 +56,12 @@ namespace RentalSite.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (_properties.Count == 0)
+            {
+                ViewBag.Message = "Properties not found.";
+                return View();
+            }
+            return View(_properties);
         }
 
         public IActionResult Privacy()

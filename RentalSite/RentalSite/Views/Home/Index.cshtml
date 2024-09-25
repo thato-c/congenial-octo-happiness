@@ -1,5 +1,77 @@
-﻿@{
+﻿@model List<Property>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Property Listing Page</h1>
+<h1>Properties</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Suburb
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Province
+            </th>
+            <th>
+                About
+            </th>
+            <th>
+                ERF Size
+            </th>
+            <th>
+                Parking Spaces
+            </th>
+            <th>
+                Bathrooms
+            </th>
+            <th>
+                Bedrooms
+            </th>
+        </tr>
+        @foreach (var property in Model)
+        {
+            if (property != null)
+            {
+                <tr>
+                    <td>
+                        @property.Suburb
+                    </td>
+                    <td>
+                        @property.City
+                    </td>
+                    <td>
+                        @property.Province
+                    </td>
+                    <td>
+                        @property.About
+                    </td>
+                    <td>
+                        @property.ERFSize
+                    </td>
+                    <td>
+                        @property.ParkingSpaces
+                    </td>
+                    <td>
+                        @property.Bathrooms
+                    </td>
+                    <td>
+                        @property.Bedrooms
+                    </td>
+                    <td>
+                        <a asp-controller="Property" asp-action="Index" asp-route-PropertyId="@property.PropertyId">Details</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <p>@ViewBag.Message</p>
+}

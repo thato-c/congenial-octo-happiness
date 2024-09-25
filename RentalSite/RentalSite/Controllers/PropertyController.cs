@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RentalSite.Models;
 
 namespace RentalSite.Controllers
 {
