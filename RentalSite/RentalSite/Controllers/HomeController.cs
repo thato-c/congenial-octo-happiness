@@ -64,6 +64,18 @@ namespace RentalSite.Controllers
             return View(_properties);
         }
 
+        public IActionResult Detail(int PropertyId)
+        {
+            var property = _properties.FirstOrDefault(p => p.PropertyId == PropertyId);
+
+            if (property == null)
+            {
+                return NotFound();
+            }
+
+            return View(property);
+        }
+
         public IActionResult Privacy()
         {
             return View();
