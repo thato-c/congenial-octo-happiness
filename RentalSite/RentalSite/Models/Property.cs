@@ -19,5 +19,9 @@
         public float ERFSize { get; set; }
 
         public string About { get; set; } = string.Empty;
+
+        public int AgentId { get; set; }
+
+        public Agent Agent { get; set; }
     }
 }

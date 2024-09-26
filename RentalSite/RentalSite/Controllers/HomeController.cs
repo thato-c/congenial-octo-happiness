@@ -20,7 +20,8 @@ namespace RentalSite.Controllers
                 About = "This is the first property",
                 Province = "Gauteng",
                 City = "Johannesburg",
-                Suburb = "Bassonia"
+                Suburb = "Bassonia",
+                AgentId = 1
             },
 
             new Property {
@@ -32,7 +33,8 @@ namespace RentalSite.Controllers
                 About = "This is the second property",
                 Province = "Gauteng",
                 City = "Johannesburg",
-                Suburb = "Soweto"
+                Suburb = "Soweto",
+                AgentId = 2
             },
 
             new Property {
@@ -44,8 +46,40 @@ namespace RentalSite.Controllers
                 About = "This is the third property",
                 Province = "Gauteng",
                 City = "Johannesburg",
-                Suburb = "Heaven"
+                Suburb = "Heaven",
+                AgentId = 3
             },
+
+        };
+
+        private List<Agent> _agents = new List<Agent>
+        {
+            new Agent
+            {
+                AgentId = 1,
+                FirstName = "Test First Name",
+                LastName = "Test Last Name",
+                Phone = 0907994742,
+                About = "The first Agent"
+            },
+
+            new Agent
+            {
+                AgentId = 2,
+                FirstName = "Test2 First Name",
+                LastName = "Test2 Last Name",
+                Phone = 0907994742,
+                About = "The second Agent"
+            },
+
+            new Agent
+            {
+                AgentId = 3,
+                FirstName = "Test3 First Name",
+                LastName = "Test3 Last Name",
+                Phone = 0907994742,
+                About = "The third Agent"
+            }
 
         };
 
@@ -61,6 +95,18 @@ namespace RentalSite.Controllers
                 ViewBag.Message = "Properties not found.";
                 return View();
             }
+
+            foreach (var property in _properties)
+            {
+                Agent? agent = _agents.FirstOrDefault(a => a.AgentId == property.AgentId);
+                if (agent == null)
+                {
+                    ViewBag.Message = "No agent assigned";
+                    return View(_properties);
+                }
+                property.Agent = agent;
+            }
+
             return View(_properties);
         }
 

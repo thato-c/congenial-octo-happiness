@@ -1,46 +1,28 @@
-﻿@model List<Agent>
-<h1>Agents</h1>
+﻿@model Agent
 
-@if (Model != null)
-{
-    <table class="table">
-        <tr>
-            <th>
-                First Name
-            </th>
-            <th>
-                Last Name
-            </th>
-            <th>
-                Phone
-            </th>
-            <th>
-                About
-            </th>
-        </tr>
-        @foreach (var agent in Model)
-        {
-            if (agent != null)
-            {
-                <tr>
-                    <td>
-                        @agent.FirstName
-                    </td>
-                    <td>
-                        @agent.LastName
-                    </td>
-                    <td>
-                        @agent.Phone
-                    </td>
-                    <td>
-                        @agent.About
-                    </td>
-                </tr>
-            }
-        }
-    </table>
-}
-else
-{
-    <p>ViewBag.Message</p>
-}
+<h1> Agent Details </h1>
+
+<form>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FirstName"> First Name</label>
+        <input asp-for="FirstName" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="About">About</label>
+        <input asp-for="About" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone">Phone</label>
+        <input asp-for="Phone" class="form-control" readonly />
+    </div>
+
+</form>

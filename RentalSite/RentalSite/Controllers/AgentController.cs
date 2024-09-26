@@ -37,15 +37,15 @@ namespace RentalSite.Controllers
 
         };
 
-        public IActionResult Index()
+        public IActionResult Index(int AgentId)
         {
             if (_agents.Count == 0) 
             {
                 ViewBag.Message = "Agents not found.";
                 return View();
             }
-
-            return View(_agents);
+            var agent = _agents.FirstOrDefault(a => a.AgentId == AgentId);
+            return View(agent);
         }
     }
 }

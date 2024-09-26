@@ -11,5 +11,7 @@
         public string About { get; set; } = string.Empty;
 
         public int Phone { get; set; }
+
+        public ICollection<Property> Properties { get; set; }
     }
 }
