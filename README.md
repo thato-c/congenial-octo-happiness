@@ -4,7 +4,15 @@ Rental Site
 2. Favorites and Wishlist
 
 3. Property Listing and Search & Filter
+- Min Price + Max Price
+- Location
+- No. of Bedrooms
+- No. of Bathrooms
+- No. of Parking Spaces
+- ERF Size
+
 4. Property Details Page and Interactive Map
++ Price
 - Location
 - Bedroom
 - Bathroom

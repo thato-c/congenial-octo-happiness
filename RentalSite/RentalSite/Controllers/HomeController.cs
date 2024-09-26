@@ -31,8 +31,8 @@ namespace RentalSite.Controllers
                 ParkingSpaces = 2,
                 ERFSize = 1300,
                 About = "This is the second property",
-                Province = "Gauteng",
-                City = "Johannesburg",
+                Province = "KwaZulu Natal",
+                City = "Durban",
                 Suburb = "Soweto",
                 AgentId = 2
             },
@@ -44,8 +44,8 @@ namespace RentalSite.Controllers
                 ParkingSpaces = 3,
                 ERFSize = 1200,
                 About = "This is the third property",
-                Province = "Gauteng",
-                City = "Johannesburg",
+                Province = "Eastern Cape",
+                City = "Cape Town",
                 Suburb = "Heaven",
                 AgentId = 3
             },
@@ -88,12 +88,30 @@ namespace RentalSite.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
             if (_properties.Count == 0)
             {
                 ViewBag.Message = "Properties not found.";
                 return View();
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                _properties = _properties.Where(p => p.City.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "city_desc":
+                    _properties = _properties.OrderByDescending(p => p.City).ToList();
+                    break;
+                default:
+                    _properties = _properties.OrderBy(p => p.City).ToList();
+                    break;
             }
 
             foreach (var property in _properties)
