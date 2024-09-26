@@ -1,1 +1,46 @@
-﻿<h1>Agent Profile Page</h1>
+﻿@model List<Agent>
+<h1>Agents</h1>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                About
+            </th>
+        </tr>
+        @foreach (var agent in Model)
+        {
+            if (agent != null)
+            {
+                <tr>
+                    <td>
+                        @agent.FirstName
+                    </td>
+                    <td>
+                        @agent.LastName
+                    </td>
+                    <td>
+                        @agent.Phone
+                    </td>
+                    <td>
+                        @agent.About
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <p>ViewBag.Message</p>
+}

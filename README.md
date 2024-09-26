@@ -16,7 +16,6 @@ Rental Site
 - First Name
 - Last Name
 - Phone
-- Address
 - About
 - Current Listings
 
